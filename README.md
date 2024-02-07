@@ -1,4 +1,4 @@
-# Additive-Models-with-Structured-Interactions
+# ELAAN: Additive Models with Sparse and Structured-Interactions
 
 This is our implementation of End-to-End Learning Approach for Additive Models with interactions under sparsity as described in our manuscript.
 
