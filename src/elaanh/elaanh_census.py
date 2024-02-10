@@ -90,7 +90,7 @@ version = args.version
 #     print(c)
 
 ### How to run the model
-path = os.path.join(save_directory, 'ELAANH', 'v{}'.format(version), 'r{}'.format(r), 'seed{}'.format(seed), 'secondround')
+path = os.path.join(save_directory, 'ELAANH', 'census', 'v{}'.format(version), 'r{}'.format(r), 'seed{}'.format(seed), 'firstround')
 os.makedirs(path, exist_ok=True)
 
 
@@ -104,8 +104,8 @@ N, _ = X.shape
 Xmin = np.min(np.vstack([X, Xval, Xtest]), axis=0)
 Xmax = np.max(np.vstack([X, Xval, Xtest]), axis=0)
 
-###### Load fitted AMs with Interaction model and recover reduced supports for downstream Strong Hierarchy Model
-load_path = os.path.join(save_directory, 'ELAANI', 'v{}'.format(5), 'r{}'.format(r), 'seed{}'.format(seed), 'secondround')
+###### Load fitted ELAAN-I model and recover reduced supports for fitting ELAAN-H
+load_path = os.path.join(save_directory, 'ELAANI', 'census', 'v{}'.format(5), 'r{}'.format(r), 'seed{}'.format(seed), 'firstround')
 
 with open(os.path.join(load_path, 'model_final.pkl'), 'rb') as input:
     ami = dill.load(input)
@@ -115,7 +115,7 @@ active_set = np.sort(np.union1d(active_set, np.unique(interaction_terms)))
 # print("Number of main effects to consider:", len(active_set)) # we consider all main effects 
 print("Number of interaction effects to consider:", len(interaction_terms))
 
-###### Call and run AMs with Interaction with Strong Hierarchy Model    
+###### Call and run ELAAN-H 
 # lams_sm_start = -3
 # lams_sm_stop = -7
 #lams_sm=np.logspace(start=lams_sm_start, stop=lams_sm_stop, num=20, base=10.0)

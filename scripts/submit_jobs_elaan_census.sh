@@ -14,7 +14,6 @@ source /etc/profile
 
 # Load modules
 module load anaconda/2021a
-#module load gurobi/gurobi-903
 
 # Call your script as you would from your command line
 source activate aoas
@@ -29,4 +28,6 @@ export HDF5_USE_FILE_LOCKING=FALSE
 # /home/gridsan/shibal/.conda/envs/aoas/bin/python /home/gridsan/shibal/elaan/src/elaani/elaani_census.py --load_directory '/home/gridsan/shibal/elaan/Census-Data' --seed $SLURM_ARRAY_TASK_ID --relative_penalty 1.0 --grid_search 'reduced' --run_first_round --version 1 --eval_criteria 'mse' --logging 
 
 # ELAAN-H
+# For ELAAN-H, we use gurobi to first solve convex relaxation. Make sure gurobipy is installed with a license
+#module load gurobi/gurobi-903
 # /home/gridsan/shibal/.conda/envs/elaan/bin/python /home/gridsan/shibal/elaan/src/elaanh/elaanh_census.py --load_directory '/home/gridsan/shibal/elaan/Census-Data' --seed $SLURM_ARRAY_TASK_ID --relative_penalty 1.0 --version 1 --eval_criteria 'mse' --logging

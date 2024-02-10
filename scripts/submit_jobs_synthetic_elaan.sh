@@ -16,4 +16,6 @@ source activate aoas
 /home/gridsan/shibal/.conda/envs/aoas/bin/python /home/gridsan/shibal/elaan/src/elaani/elaani_synthetic.py  --dataset 'synthetic' --dist 'normal' --correlation 0.5 --seed $SLURM_ARRAY_TASK_ID --train_size 100 --version 1 --r 1.0 --Ki 10 --Kij 5
 
 # ELAAN-H
+# For ELAAN-H, we use gurobi to solve convex relaxation. Make sure gurobipy is installed with a license
+#module load gurobi/gurobi-903
 /home/gridsan/shibal/.conda/envs/aoas/bin/python /home/gridsan/shibal/elaan/src/elaanh/elaanh_synthetic.py  --dataset 'synthetic' --dist 'normal' --correlation 0.5 --seed $SLURM_ARRAY_TASK_ID --train_size 100 --version 1 --r 1.0 --Ki 10 --Kij 5

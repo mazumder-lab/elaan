@@ -126,7 +126,7 @@ lams_sm=np.logspace(start=lams_sm_start, stop=lams_sm_stop, num=20, base=10.0)
 lams_L0=np.logspace(start=lams_L0_start, stop=lams_L0_stop, num=100, base=10.0)
 
 if args.run_first_round:
-    path = os.path.join(save_directory, 'ELAANI', 'v{}'.format(version), 'r{}'.format(r), 'seed{}'.format(seed), 'firstround')
+    path = os.path.join(save_directory, 'ELAANI', 'census', 'v{}'.format(version), 'r{}'.format(r), 'seed{}'.format(seed), 'firstround')
     os.makedirs(path, exist_ok=True)
 
     with open(path+'/Parameters.txt', "w") as f:
@@ -178,48 +178,48 @@ if args.run_first_round:
     with open(os.path.join(path, 'model.pkl'), 'wb') as output:
         dill.dump(am, output)
 
-# Second pass over the hyperparameter grid is much faster as it considers only the reduced set of promising interaction effects that appeared in the solutions over the grid. Due to nonconvexity of $\ell_0$-norm, the solution quality may improve with this second run! we did not consider this in the paper.
+# # Second pass over the hyperparameter grid is much faster as it considers only the reduced set of promising interaction effects that appeared in the solutions over the grid. Due to nonconvexity of $\ell_0$-norm, the solution quality may improve with this second run! we did not consider this in the paper.
 
-if args.run_second_round:
-    path = os.path.join(save_directory, 'ELAANI', 'v{}'.format(version), 'r{}'.format(r), 'seed{}'.format(seed), 'secondround')
-    os.makedirs(path, exist_ok=True)
+# if args.run_second_round:
+#     path = os.path.join(save_directory, 'ELAANI', 'census', 'v{}'.format(version), 'r{}'.format(r), 'seed{}'.format(seed), 'secondround')
+#     os.makedirs(path, exist_ok=True)
 
-    with open(path+'/Parameters.txt', "w") as f:
-        [f.write('{}: {}\n'.format(k,v)) for k,v in vars(args).items()]
-        f.write('Train: {}, Validation: {}, Test: {}\n'.format(X.shape[0], Xval.shape[0], Xtest.shape[0])) 
+#     with open(path+'/Parameters.txt', "w") as f:
+#         [f.write('{}: {}\n'.format(k,v)) for k,v in vars(args).items()]
+#         f.write('Train: {}, Validation: {}, Test: {}\n'.format(X.shape[0], Xval.shape[0], Xtest.shape[0])) 
     
-    am_new = models.ELAANI(
-        lams_sm=lams_sm,
-        lams_L0=lams_L0,
-        alpha=r,
-        convergence_tolerance=convergence_tolerance,
-        eval_criteria=eval_criteria,
-        path=path,
-        max_interaction_support=max_interaction_support,
-        terminate_val_L0path=False
-    )
-    am_new.load_data(X, Y, y_scaler, column_names, Xmin, Xmax)
+#     am_new = models.ELAANI(
+#         lams_sm=lams_sm,
+#         lams_L0=lams_L0,
+#         alpha=r,
+#         convergence_tolerance=convergence_tolerance,
+#         eval_criteria=eval_criteria,
+#         path=path,
+#         max_interaction_support=max_interaction_support,
+#         terminate_val_L0path=False
+#     )
+#     am_new.load_data(X, Y, y_scaler, column_names, Xmin, Xmax)
 
-    load_path = os.path.join(save_directory, 'ELAANI', 'v{}'.format(version), 'r{}'.format(r), 'seed{}'.format(seed), 'firstround')
-    with open(os.path.join(load_path, 'model.pkl'), 'rb') as input:
-        ami_loaded = dill.load(input)
-    # active_set = ami_loaded.active_set_union
-    interaction_terms = ami_loaded.interaction_terms_union
-    # active_set = np.sort(np.union1d(active_set, np.unique(interaction_terms)))
-    # print("Number of main effects to consider:", len(active_set)) 
-    print("Number of interaction effects to consider:", len(interaction_terms)) 
+#     load_path = os.path.join(save_directory, 'ELAANI', 'census', 'v{}'.format(version), 'r{}'.format(r), 'seed{}'.format(seed), 'firstround')
+#     with open(os.path.join(load_path, 'model.pkl'), 'rb') as input:
+#         ami_loaded = dill.load(input)
+#     # active_set = ami_loaded.active_set_union
+#     interaction_terms = ami_loaded.interaction_terms_union
+#     # active_set = np.sort(np.union1d(active_set, np.unique(interaction_terms)))
+#     # print("Number of main effects to consider:", len(active_set)) 
+#     print("Number of interaction effects to consider:", len(interaction_terms)) 
     
-    am_new.interaction_terms = interaction_terms
-    am_new.generate_all_pairs = False
-    am_new.I = (int)(comb(p, 2, exact=False))
-    am_new.Imax = len(interaction_terms)
+#     am_new.interaction_terms = interaction_terms
+#     am_new.generate_all_pairs = False
+#     am_new.I = (int)(comb(p, 2, exact=False))
+#     am_new.Imax = len(interaction_terms)
 
-    am_new.generate_splines_and_quadratic_penalties(Ki=Ki, Kij=Kij)
-    am_new.fit_validation_path(Xval, Yval)
-    am_new.evaluate_and_save(Xtest, Ytest)
-    am_new.Btrain = None
-    am_new.BtrainT_Btrain = None
-    am_new.Btrain_interaction = None
-    am_new.Btrain_interactionT_Btrain_interaction = None
-    with open(os.path.join(path, 'model_final.pkl'), 'wb') as output:
-        dill.dump(am_new, output)
+#     am_new.generate_splines_and_quadratic_penalties(Ki=Ki, Kij=Kij)
+#     am_new.fit_validation_path(Xval, Yval)
+#     am_new.evaluate_and_save(Xtest, Ytest)
+#     am_new.Btrain = None
+#     am_new.BtrainT_Btrain = None
+#     am_new.Btrain_interaction = None
+#     am_new.Btrain_interactionT_Btrain_interaction = None
+#     with open(os.path.join(path, 'model_final.pkl'), 'wb') as output:
+#         dill.dump(am_new, output)
