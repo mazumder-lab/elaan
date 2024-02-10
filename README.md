@@ -36,15 +36,21 @@ Alternatively, the following packages can be downloaded to run the python script
 * `ELAAN-I`: Additive Models with Interactions under L0
 * `ELAAN-H`: Additive Models with Interactions with Strong Hierarchy
 
-## Running the code
-
+## Running Code
+Scripts folder contains different bash scripts for running ELAAN-I, ELAAN-H, EBM and GamiNet on census data for different seeds.
+For example, ELAAN_I can be run for one seed as follows:
 ```bash
-cd src
-
-The following 2 scripts can be used to run the following two models on Census Data:
-For ELAAN-I: run elaani/elaani-census.py
-For ELAAN-H: run elaanh/elaanh-census.py
+/home/gridsan/shibal/.conda/envs/aoas/bin/python /home/gridsan/shibal/elaan/src/elaani/elaani_census.py --load_directory '/home/gridsan/shibal/elaan/Census-Data' --seed 1 --relative_penalty 1.0 --grid_search 'reduced' --run_first_round --version 1 --eval_criteria 'mse' --logging
 ```
+
+Similarly, GamiNet can be run as: 
+```bash
+cd /home/gridsan/shibal/elaan/baselines/GamiNet/examples/
+
+/home/gridsan/shibal/.conda/envs/additive2/bin/python /home/gridsan/shibal/elaan/baselines/GamiNet/examples/gaminet_census.py --load_directory '/home/gridsan/shibal/elaan/Census-Data' --seed $SLURM_ARRAY_TASK_ID --version 1
+```
+Note GamiNet requires additional installation of tensorflow and tensorflow-lattice libraries 
+
 
 ## Citing Additive-Models-with-Structured-Interactions
 If you find our repository useful in your research, please consider citing the following paper.
