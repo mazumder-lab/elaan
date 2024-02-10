@@ -1,2 +1,5 @@
-# ignore all files in the folder data
+# ignore all files in the folder Census-Data
 Census-Data/
+
+# ignore all files in the folder results
+results/

@@ -14,7 +14,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, FunctionTransformer
-from sklearn.metrics import mean_absolute_error, mean_squared_error
+from sklearn.metrics import mean_squared_error
 
 from interpret.glassbox import ExplainableBoostingRegressor
 from interpret import show
@@ -219,7 +219,8 @@ X, Y, Xval, Yval, Xtest, Ytest, _, y_scaler = process_data(
     val_ratio=0.1, 
     test_ratio=0.1,
     seed=seed,
-    standardize_response=False)
+    standardize_response=False
+)
 
 def objective(trial, X, Y, Xval, Yval, Xtest, Ytest):
     
@@ -228,21 +229,10 @@ def objective(trial, X, Y, Xval, Yval, Xtest, Ytest):
     
     model = ExplainableBoostingRegressor(
         feature_names=None,
-        feature_types=None,
-        max_bins=256,
-        max_interaction_bins=32,
-        binning='quantile',
-        mains='all',
         interactions=num_of_interactions, # 10
-        outer_bags=8,
-        inner_bags=0,
         learning_rate=learning_rate,
-        validation_size=0.15,
-        early_stopping_rounds=50,
-        early_stopping_tolerance=0.0001,
-        max_rounds=5000,
-        min_samples_leaf=2,
-        max_leaves=3,
+        validation_size=0.0, # we use an explicit validation set to get best hyperparameters
+        outer_bags=1,
         n_jobs=-2,
         random_state=42,
     )
@@ -251,9 +241,9 @@ def objective(trial, X, Y, Xval, Yval, Xtest, Ytest):
     mse_train, rmse_train = metrics(Y, model.predict(X))
     mse_valid, rmse_valid = metrics(Yval, model.predict(Xval))
     mse_test, rmse_test = metrics(Ytest, model.predict(Xtest))
-    print("Train: MSE:", mse_train)
-    print("Val: MSE:", mse_valid)
-    print("Test: MSE:", mse_test)   
+    print("Train MSE:", mse_train)
+    print("Val MSE:", mse_valid)
+    print("Test MSE:", mse_test)   
 
     trial.set_user_attr("mse_train", mse_train)
     trial.set_user_attr("mse_valid", mse_valid)
@@ -262,17 +252,7 @@ def objective(trial, X, Y, Xval, Yval, Xtest, Ytest):
     trial.set_user_attr("rmse_train", rmse_train)
     trial.set_user_attr("rmse_valid", rmse_valid)
     trial.set_user_attr("rmse_test", rmse_test)
-    
-    split_names = []
-    for name in model.feature_names:
-        split_names.append(name.split(' x '))
-    main_effects = [name for name in split_names if len(name)==1]
-    main_effects = np.array([(int)(name[0].split("feature_")[1]) for name in main_effects])
-    interaction_effects = [name for name in split_names if len(name)==2]
-    interaction_effects = np.array([[(int)(name[0].split("feature_")[1]), (int)(name[1].split("feature_")[1])] for name in interaction_effects])
-    trial.set_user_attr("nnz(M)", len(main_effects))
-    trial.set_user_attr("nnz(I)", len(interaction_effects))
-    
+        
     return mse_valid
 
 start = timeit.default_timer()

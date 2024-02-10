@@ -196,7 +196,7 @@ def identity_func(x):
 y_preprocessor = FunctionTransformer(lambda x: np.array(x)) # acts as identity
 y_scaler = y_preprocessor
 
-save_directory = os.path.join(args.path, "elaan/baselines/EBM", "results", args.dataset, args.dist, args.correlation, "N_train_{}".format(args.train_size), "seed{}".format(args.seed)) 
+save_directory = os.path.join(args.path, "elaan/baselines/EBM", "results", args.dataset, args.dist, "{}".format(args.correlation), "N_train_{}".format(args.train_size), "seed{}".format(args.seed)) 
 
 column_names = np.arange(Xtrain.shape[1])
 logging = True
@@ -226,21 +226,9 @@ def objective(trial, X, Y, Xval, Yval, dataset):
     
     model = ExplainableBoostingRegressor(
         feature_names=None,
-#         feature_types=None,
-#         max_bins=256,
-#         max_interaction_bins=32,
-#         binning='quantile',
-#         mains='all',
         interactions=num_of_interactions, # 10
         outer_bags=1,
-#         inner_bags=0,
-#         learning_rate=learning_rate,
         validation_size=0.0,
-#         early_stopping_rounds=50,
-#         early_stopping_tolerance=0.0001,
-#         max_rounds=5000,
-#         min_samples_leaf=2,
-#         max_leaves=3,
         n_jobs=1,
         random_state=42,
     )
@@ -375,21 +363,9 @@ print("num_of_interactions_opt:", num_of_interactions_opt)
 ###### Refit for optimal smoothness on train + val
 model = ExplainableBoostingRegressor(
     feature_names=None,
-#     feature_types=None,
-#     max_bins=256,
-#     max_interaction_bins=32,
-#     binning='quantile',
-#     mains='all',
     interactions=num_of_interactions_opt, # 10
     outer_bags=1,
-#     inner_bags=0,
-#     learning_rate=learning_rate_opt,
     validation_size=0.0,
-#     early_stopping_rounds=50,
-#     early_stopping_tolerance=0.0001,
-#     max_rounds=5000,
-#     min_samples_leaf=2,
-#     max_leaves=3,
     n_jobs=1,
     random_state=42,
 )

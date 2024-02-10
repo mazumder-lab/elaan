@@ -40,7 +40,7 @@ parser.add_argument('--Ki', dest='Ki',  type=int, default=10)
 parser.add_argument('--Kij', dest='Kij',  type=int, default=5)
 
 # Logging Arguments
-parser.add_argument('--path', dest='path',  type=str, default='/pool001/shibal')
+parser.add_argument('--path', dest='path',  type=str, default='/home/gridsan/shibal')
 parser.add_argument('--version', dest='version',  type=int, default=1)
 parser.add_argument('--r', dest='r',  type=float, default=1.0)
 parser.add_argument('--use_sparse', dest='use_sparse', action='store_true')
@@ -109,6 +109,7 @@ if args.dataset == 'synthetic':
     lams_sm_stop = -6
     lams_L0_start = 0
     lams_L0_stop = -4
+    max_interaction_support=50 # cuts off the L0 regularization path when the number of interactions reach 400.
         
 elif args.dataset == 'large-synthetic-correlated':
     p = 500
@@ -210,7 +211,7 @@ def identity_func(x):
 y_preprocessor = FunctionTransformer(lambda x: np.array(x)) # acts as identity
 y_scaler = y_preprocessor
 
-save_directory = os.path.join(args.path, "results-synthetic", args.dataset, args.dist, "N_train_{}".format(args.train_size), "seed{}".format(args.seed)) 
+save_directory = os.path.join(args.path, "elaan", "results", "ELAANH", args.dataset, args.dist, "{}".format(args.correlation), "N_train_{}".format(args.train_size), "seed{}".format(args.seed)) 
 
 convergence_tolerance = 1e-4
 column_names = np.arange(Xtrain.shape[1])
