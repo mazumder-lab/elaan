@@ -49,7 +49,7 @@ cd /home/gridsan/shibal/elaan/baselines/GamiNet/examples/
 
 /home/gridsan/shibal/.conda/envs/additive2/bin/python /home/gridsan/shibal/elaan/baselines/GamiNet/examples/gaminet_census.py --load_directory '/home/gridsan/shibal/elaan/Census-Data' --seed 1 --version 1
 ```
-Note GamiNet requires additional installation of tensorflow and tensorflow-lattice libraries 
+Note GamiNet requires additional installation of tensorflow and tensorflow-lattice libraries. 
 
 
 ELAAN-H can be run on synthetic data as follows:

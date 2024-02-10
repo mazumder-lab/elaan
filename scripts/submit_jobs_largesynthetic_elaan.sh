@@ -3,8 +3,8 @@
 # SBATCH --cpus-per-task=8
 # SBATCH --time=4-00:00
 # SBATCH --mem=32G
-# SBATCH -o /home/gridsan/shibal/logs/seed%a_%j.out
-# SBATCH -e /home/gridsan/shibal/logs/seed%a_%j.err
+# SBATCH -o /home/gridsan/shibal/logs/job_%A_%a.out
+# SBATCH -e /home/gridsan/shibal/logs/job_%A_%a.err
 
 echo 'My SLURM_ARRAY_TASK_ID: ' $SLURM_ARRAY_TASK_ID
 echo 'Number of Tasks: ' $SLURM_ARRAY_TASK_COUNT

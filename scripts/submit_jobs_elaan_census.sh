@@ -7,7 +7,7 @@
 #SBATCH --mail-user=shibal@mit.edu
 #SBATCH --output=aoas_%A.out
 #SBATCH --error=aoas_%A.err
-#SBATCH --array=0-0
+#SBATCH --array=0-19
 
 # Initialize the module command first
 source /etc/profile
