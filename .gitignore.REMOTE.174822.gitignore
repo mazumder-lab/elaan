@@ -1,0 +1,5 @@
+# ignore all directories in the folder baselines
+baselines/
+
+# ignore all files in the folder data
+Census-data/
