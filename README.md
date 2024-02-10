@@ -2,7 +2,7 @@
 
 This is our implementation of End-to-End Learning Approach for Additive Models with interactions under sparsity as described in our manuscript.
 
-[Predicting Census Survey Response Rates With Parsimonious Additive Models and Structured Interactions](http://arxiv.org/abs/2108.11328) by Shibal Ibrahim, Rahul Mazumder, Peter Radchenko, Emanuel Ben-David
+[Predicting Census Survey Response Rates With Parsimonious Additive Models and Structured Interactions](http://arxiv.org/abs/2108.11328) by Shibal Ibrahim, Peter Radchenko, Emanuel Ben-David, Rahul Mazumder
 
 ## Installation
 We provide a conda environment file named "sparse-am-with-interactions.yml" for straightforward installation with Anaconda, which can be used to setup a sparse-am-with-interactions environment with the commands:
@@ -36,8 +36,9 @@ Alternatively, the following packages can be downloaded to run the python script
 * `ELAAN-H`: Additive Models with Interactions with Strong Hierarchy
 
 ## Running Code
-Scripts folder contains different bash scripts for running ELAAN-I, ELAAN-H, EBM and GamiNet on census data for different seeds.
-For example, ELAAN-I can be run for one seed as follows:
+Scripts folder contains different bash scripts for running ELAAN-I, ELAAN-H, EBM and GamiNet on Census data as well as Synthetic datasets for different seeds.
+
+For example, ELAAN-I can be run for one seed on Census data as follows:
 ```bash
 /home/gridsan/shibal/.conda/envs/aoas/bin/python /home/gridsan/shibal/elaan/src/elaani/elaani_census.py --load_directory '/home/gridsan/shibal/elaan/Census-Data' --seed 1 --relative_penalty 1.0 --grid_search 'reduced' --run_first_round --version 1 --eval_criteria 'mse' --logging
 ```
