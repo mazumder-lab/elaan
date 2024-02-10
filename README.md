@@ -7,9 +7,9 @@ This is our implementation of End-to-End Learning Approach for Additive Models w
 ## Installation
 We provide a conda environment file named "sparse-am-with-interactions.yml" for straightforward installation with Anaconda, which can be used to setup a sparse-am-with-interactions environment with the commands:
 
-conda env create --name elaan --file=elaan.yml
+conda env create --name aoas --file=aoas.yml
 
-source activate elaan
+source activate aoas
 
 Alternatively, the following packages can be downloaded to run the python scripts and jupyter notebooks.
 
