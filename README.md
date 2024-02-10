@@ -52,6 +52,15 @@ cd /home/gridsan/shibal/elaan/baselines/GamiNet/examples/
 Note GamiNet requires additional installation of tensorflow and tensorflow-lattice libraries 
 
 
+ELAAN-H can be run on synthetic data as follows:
+```bash
+/home/gridsan/shibal/.conda/envs/aoas/bin/python /home/gridsan/shibal/elaan/src/elaanh/elaanh_synthetic.py  --dataset 'synthetic' --dist 'normal' --correlation 0.5 --seed $SLURM_ARRAY_TASK_ID --train_size 100 --version 1 --r 1.0 --Ki 10 --Kij 5
+```
+Note ELAAN-H requires additional installation of gurobipy, as we use gurobi to solve the convex relaxation.
+
+For Census data, we use ELAAN-I path of solutions to generate a reduced support, which can be used by ELAAN-H to solve problem under strong hierarchy. Hence, this requires ELAAN-I script to have finished first to generate some model files, which are loaded. 
+
+
 ## Citing Additive-Models-with-Structured-Interactions
 If you find our repository useful in your research, please consider citing the following paper.
 
