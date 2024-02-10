@@ -37,7 +37,7 @@ Alternatively, the following packages can be downloaded to run the python script
 
 ## Running Code
 Scripts folder contains different bash scripts for running ELAAN-I, ELAAN-H, EBM and GamiNet on census data for different seeds.
-For example, ELAAN_I can be run for one seed as follows:
+For example, ELAAN-I can be run for one seed as follows:
 ```bash
 /home/gridsan/shibal/.conda/envs/aoas/bin/python /home/gridsan/shibal/elaan/src/elaani/elaani_census.py --load_directory '/home/gridsan/shibal/elaan/Census-Data' --seed 1 --relative_penalty 1.0 --grid_search 'reduced' --run_first_round --version 1 --eval_criteria 'mse' --logging
 ```
