@@ -41,10 +41,9 @@ Alternatively, the following packages can be downloaded to run the python script
 ```bash
 cd src
 
-The following 3 scripts can be used to run the following three models on Census Data:
-For ELAAN: run elaan/elaan-census.py
+The following 2 scripts can be used to run the following two models on Census Data:
 For ELAAN-I: run elaani/elaani-census.py
-For ELAAN-H: run elaanh/elaanh-census.ipynb
+For ELAAN-H: run elaanh/elaanh-census.py
 ```
 
 ## Citing Additive-Models-with-Structured-Interactions
