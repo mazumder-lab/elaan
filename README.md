@@ -32,7 +32,6 @@ Alternatively, the following packages can be downloaded to run the python script
 * tqdm                      4.54.1
  
 ## Proposed Models
-* `ELAAN`: Additive Models with only main effects only under L0
 * `ELAAN-I`: Additive Models with Interactions under L0
 * `ELAAN-H`: Additive Models with Interactions with Strong Hierarchy
 
@@ -47,7 +46,7 @@ Similarly, GamiNet can be run as:
 ```bash
 cd /home/gridsan/shibal/elaan/baselines/GamiNet/examples/
 
-/home/gridsan/shibal/.conda/envs/additive2/bin/python /home/gridsan/shibal/elaan/baselines/GamiNet/examples/gaminet_census.py --load_directory '/home/gridsan/shibal/elaan/Census-Data' --seed $SLURM_ARRAY_TASK_ID --version 1
+/home/gridsan/shibal/.conda/envs/additive2/bin/python /home/gridsan/shibal/elaan/baselines/GamiNet/examples/gaminet_census.py --load_directory '/home/gridsan/shibal/elaan/Census-Data' --seed 1 --version 1
 ```
 Note GamiNet requires additional installation of tensorflow and tensorflow-lattice libraries 
 
