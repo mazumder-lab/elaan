@@ -1,9 +1,0 @@
-# ignore all directories in the folder baselines
-baselines/
-
-# ignore all files in the folder data
-<<<<<<< HEAD
-Census-Data/
-=======
-Census-data/
->>>>>>> 9dc1196e837f01e3c44f85be1e063289c1165263
