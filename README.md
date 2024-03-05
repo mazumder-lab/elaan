@@ -37,7 +37,7 @@ Alternatively, the following packages can be downloaded to run the python script
 
 
 ## Census Data
-The data can be downloaded from dropbox: https://www.dropbox.com/sh/piwdz9sbmxjx03f/AACAKqjunrEhaRY9SORRE-Yba?dl=0
+The Census data can be downloaded from dropbox: https://www.dropbox.com/sh/piwdz9sbmxjx03f/AACAKqjunrEhaRY9SORRE-Yba?dl=0
 Download Census Planning Database 2019 Tract Level Data and tract-level shape files from the link.
 
 ## Running Code
