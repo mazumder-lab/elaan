@@ -35,6 +35,11 @@ Alternatively, the following packages can be downloaded to run the python script
 * `ELAAN-I`: Additive Models with Interactions under L0
 * `ELAAN-H`: Additive Models with Interactions with Strong Hierarchy
 
+
+## Census Data
+The data can be downloaded from dropbox: https://www.dropbox.com/sh/piwdz9sbmxjx03f/AACAKqjunrEhaRY9SORRE-Yba?dl=0
+Download Census Planning Database 2019 Tract Level Data and tract-level shape files from the link.
+
 ## Running Code
 Scripts folder contains different bash scripts for running ELAAN-I, ELAAN-H, EBM and GamiNet on Census data as well as Synthetic datasets for different seeds.
 
